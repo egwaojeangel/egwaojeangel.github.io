@@ -1518,7 +1518,7 @@
             <!-- Brain Tumor Segmentation Project -->
             <div class="project-card fade-in">
 <div class="project-gif-wrapper">
-<img src="https://lh3.googleusercontent.com/d/1MvK57KkP0uOI2W-RkK5P6pvQFc9WJ66I" alt="Brain Tumor Segmentation Demo" loading="lazy">
+<img src="https://lh3.googleusercontent.com/d/14X4dMJEqH4yosLI5BPV1qZAVlkj-Y6hd" alt="Brain Tumor Segmentation Demo" loading="lazy">
     <div class="gif-fade"></div>
     <span class="gif-badge">Live Demo</span>
 </div>
@@ -1611,29 +1611,29 @@
             <!-- Diabetic Retinopathy Detection Project -->
             <div class="project-card fade-in">
 <div class="project-gif-wrapper">
-    <img src="https://lh3.googleusercontent.com/d/1bkFCK_KIp4h1MVvnR8XMpF7g6w9xhX4c" alt="RetinalLens AI Demo">
+    <img src="https://lh3.googleusercontent.com/d/1HSe-0Kkr1bgMlZcRfFqL_rmE7-rr5ZMB" alt="RetinalLens AI Demo">
     <div class="gif-fade"></div>
     <span class="gif-badge">Live Demo</span>
 </div>
                 <div class="project-icon">👁️</div>
-                <h3>Diabetic Retinopathy Detection Using EfficientNet</h3>
+                <h3>Diabetic Retinopathy Detection Using EfficientNet-B4</h3>
                 <div class="project-period">Jan 2026 – Feb 2026</div>
                 <p class="project-description">
-                    Multi-class DR severity grading system using EfficientNet-B0 on fundus images with Grad-CAM 
+                    Multi-class DR severity grading system using EfficientNet-B4 on fundus images with Grad-CAM 
                     explainability for clinical interpretation.
                 </p>
                 <div class="project-metrics">
                     <div class="metric">
-                        <div class="metric-value">99.60%</div>
-                        <div class="metric-label">AUC Score</div>
+                        <div class="metric-value">64.90%</div>
+                        <div class="metric-label">Validation Accuracy</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-value">98.23%</div>
-                        <div class="metric-label">Accuracy</div>
+                        <div class="metric-value">58.79%</div>
+                        <div class="metric-label">Macro F1 Score</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-value">98.27%</div>
-                        <div class="metric-label">F1-Score</div>
+                        <div class="metric-value">Epoch 14</div>
+                        <div class="metric-label">Best Epoch</div>
                     </div>
                     <div class="metric">
                         <div class="metric-value">5-Class</div>
@@ -1643,7 +1643,7 @@
                 <div class="project-tech">
                     <span class="tech-tag">Python</span>
                     <span class="tech-tag">PyTorch</span>
-                    <span class="tech-tag">EfficientNet</span>
+                    <span class="tech-tag">EfficientNet-B4</span>
                     <span class="tech-tag">Grad-CAM</span>
                     <span class="tech-tag">Flask</span>
                 </div>
@@ -1931,15 +1931,6 @@ const gifObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.project-gif-wrapper img').forEach(img => {
     gifObserver.observe(img);
 });
-document.querySelectorAll('.project-gif-wrapper img').forEach(img => {
-    img.addEventListener('load', function() {
-        const src = this.src;
-        setInterval(() => {
-            this.src = '';
-            this.src = src;
-        }, 100000); 
-    });
-});
-    </script>
+ </script>
 </body>
 </html>
