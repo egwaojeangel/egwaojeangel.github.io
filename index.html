@@ -2121,15 +2121,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 const href = link.getAttribute('href');
                 if (href && href.startsWith('#') && href.length > 1) {
                     e.preventDefault();
-                    e.stopImmediatePropagation();
                     toggleMenu(false);
+                    document.body.style.overflow = '';
                     setTimeout(() => {
                         const target = document.querySelector(href);
                         if (target) {
                             const offset = target.getBoundingClientRect().top + window.scrollY - 70;
                             window.scrollTo({ top: offset, behavior: 'smooth' });
                         }
-                    }, 400);
+                    }, 450);
                 }
             });
         });
@@ -2179,18 +2179,17 @@ document.addEventListener('DOMContentLoaded', function() {
             observer.observe(el);
         });
 
-        // Smooth scrolling for anchor links
+       // Smooth scrolling for anchor links (desktop only - mobile handled above)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            if (anchor.closest('#navLinks')) return;
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 if (href !== '#' && href.length > 1) {
                     e.preventDefault();
                     const target = document.querySelector(href);
                     if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                        const offset = target.getBoundingClientRect().top + window.scrollY - 70;
+                        window.scrollTo({ top: offset, behavior: 'smooth' });
                     }
                 }
             });
