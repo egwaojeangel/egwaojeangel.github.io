@@ -1585,6 +1585,9 @@
                 padding: 1rem 0;
                 font-size: 1.1rem;
                 font-weight: 500;
+                 cursor: pointer;
+    -webkit-tap-highlight-color: rgba(212,165,116,0.2);
+    touch-action: manipulation;
             }
 
             .nav-links a::after {
@@ -2117,7 +2120,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Close menu when a nav link is clicked
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', (e) => {
+                ['click', 'touchend'].forEach(eventType => {
+link.addEventListener(eventType, (e) => {
                 const href = link.getAttribute('href');
                 if (href && href.startsWith('#') && href.length > 1) {
                     e.preventDefault();
@@ -2133,6 +2137,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+     });
         
        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
