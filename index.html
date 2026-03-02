@@ -2136,8 +2136,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }, { passive: false });
 
             link.addEventListener('click', (e) => {
-                e.preventDefault();
-            });
+    e.preventDefault();
+    if (!('ontouchstart' in window)) {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#') && href.length > 1) {
+            toggleMenu(false);
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = target.getBoundingClientRect().top + window.scrollY - 70;
+                    window.scrollTo({ top: offset, behavior: 'smooth' });
+                }
+            }, 450);
+        }
+    }
+});
         });
 
        // Navbar scroll effect
