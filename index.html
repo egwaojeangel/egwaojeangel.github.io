@@ -2121,23 +2121,25 @@ document.addEventListener('DOMContentLoaded', function() {
 // Close menu when a nav link is clicked
         navLinks.querySelectorAll('a').forEach(link => {
                 ['click', 'touchend'].forEach(eventType => {
-link.addEventListener(eventType, (e) => {
-                const href = link.getAttribute('href');
-                if (href && href.startsWith('#') && href.length > 1) {
-                    e.preventDefault();
-                    toggleMenu(false);
-                    document.body.style.overflow = '';
-                    setTimeout(() => {
-                        const target = document.querySelector(href);
-                        if (target) {
-                            const offset = target.getBoundingClientRect().top + window.scrollY - 70;
-                            window.scrollTo({ top: offset, behavior: 'smooth' });
-                        }
-                    }, 450);
-                }
-            });
-        });
-     });
+link.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('#') && href.length > 1) {
+        toggleMenu(false);
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            const target = document.querySelector(href);
+            if (target) {
+                const offset = target.getBoundingClientRect().top + window.scrollY - 70;
+                window.scrollTo({ top: offset, behavior: 'smooth' });
+            }
+        }, 450);
+    }
+}, { passive: false });
+
+link.addEventListener('click', (e) => {
+    e.preventDefault();
+});
         
        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
