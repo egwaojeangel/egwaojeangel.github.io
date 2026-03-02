@@ -2119,16 +2119,21 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
-                toggleMenu(false);
                 if (href && href.startsWith('#') && href.length > 1) {
                     e.preventDefault();
+                    e.stopImmediatePropagation();
+                    toggleMenu(false);
                     setTimeout(() => {
                         const target = document.querySelector(href);
-                        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 350);
+                        if (target) {
+                            const offset = target.getBoundingClientRect().top + window.scrollY - 70;
+                            window.scrollTo({ top: offset, behavior: 'smooth' });
+                        }
+                    }, 400);
                 }
             });
-        });        
+        });
+        
        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
