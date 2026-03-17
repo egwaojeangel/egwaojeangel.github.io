@@ -2214,10 +2214,10 @@ document.addEventListener('DOMContentLoaded', function() {
         navBackdrop.addEventListener('click', () => toggleMenu(false));
 // Close menu when a nav link is clicked
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('touchend', (e) => {
-                e.preventDefault();
+            link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
                 if (href && href.startsWith('#') && href.length > 1) {
+                    e.preventDefault();
                     toggleMenu(false);
                     document.body.style.overflow = '';
                     setTimeout(() => {
@@ -2226,27 +2226,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             const offset = target.getBoundingClientRect().top + window.scrollY - 70;
                             window.scrollTo({ top: offset, behavior: 'smooth' });
                         }
-                    }, 450);
+                    }, 300);
                 }
-            }, { passive: false });
-
-            link.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (!('ontouchstart' in window)) {
-        const href = link.getAttribute('href');
-        if (href && href.startsWith('#') && href.length > 1) {
-            toggleMenu(false);
-            document.body.style.overflow = '';
-            setTimeout(() => {
-                const target = document.querySelector(href);
-                if (target) {
-                    const offset = target.getBoundingClientRect().top + window.scrollY - 70;
-                    window.scrollTo({ top: offset, behavior: 'smooth' });
-                }
-            }, 450);
-        }
-    }
-});
+            });
         });
 
        // Navbar scroll effect
