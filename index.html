@@ -2214,22 +2214,26 @@ document.addEventListener('DOMContentLoaded', function() {
         navBackdrop.addEventListener('click', () => toggleMenu(false));
 // Close menu when a nav link is clicked
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                const href = link.getAttribute('href');
-                if (href && href.startsWith('#') && href.length > 1) {
-                    e.preventDefault();
-                    toggleMenu(false);
-                    document.body.style.overflow = '';
-                    setTimeout(() => {
-                        const target = document.querySelector(href);
-                        if (target) {
-                            const offset = target.getBoundingClientRect().top + window.scrollY - 70;
-                            window.scrollTo({ top: offset, behavior: 'smooth' });
-                        }
-                    }, 300);
+    link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#') && href.length > 1) {
+            e.preventDefault();
+            // Immediately hide backdrop and restore scroll
+            navBackdrop.classList.remove('open');
+            hamburger.classList.remove('open');
+            navLinks.classList.remove('open');
+            document.body.style.overflow = '';
+            // Wait for menu to fully close before scrolling
+            setTimeout(() => {
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = target.getBoundingClientRect().top + window.scrollY - 70;
+                    window.scrollTo({ top: offset, behavior: 'smooth' });
                 }
-            });
-        });
+            }, 50);
+        }
+    });
+});
 
        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
